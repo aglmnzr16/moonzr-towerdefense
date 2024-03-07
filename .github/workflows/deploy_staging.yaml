@@ -1,0 +1,25 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - uses: ok-nick/setup-aftman@v0.4.2
+      name: Install aftman
+      with:
+          token: ${{ SECRETS.GITHUB_TOKEN }}
+
+    - run: rojo build -o moonzr-towerDefense.rbxl
+
+    # - run: rbxcloud experience publish -f game.rbxl -p ? -u ? -t published -a ${{ secrets.API_KEY }}
+    - run: rbxcloud experience publish --f moonzr-towerDefense.rbxl --p 16653174260 --u 5728027313 --t published --a ${{ secrets.API_KEY }
