@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - uses: ok-nick/setup-aftman@v0.4.2
       name: Install aftman
@@ -31,7 +31,7 @@ jobs:
     name: Styling
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: StyLua
       uses: JohnnyMorganz/stylua-action@v4
       with:
