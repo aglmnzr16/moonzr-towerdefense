@@ -1,12 +1,10 @@
+
 name: CI
 
 on:
   push:
     branches:
-    - main
-  pull_request:
-    branches:
-    - main
+    - dev
 
 jobs:
 
@@ -14,25 +12,26 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
+    - name: Checkout Code
       uses: actions/checkout@v3
 
     - uses: ok-nick/setup-aftman@v0.4.2
-      name: install Aftman
+      name: Install aftman
       with:
-          version: "^0.2.7"
           token: ${{ SECRETS.GITHUB_TOKEN }}
-      
+
     - name: Lint
       run: |
-        selene ./modules
+        selene ./src
 
   style:
     name: Styling
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: JohnnyMorganz/StyLua@0.20.0
+    - name: StyLua
+      uses: JohnnyMorganz/stylua-action@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        args: --check .
+        version: latest
+        args: --check ./src
