@@ -21,5 +21,5 @@ jobs:
 
     - run: rojo build -o moonzr-towerDefense.rbxl
 
-    - run: rbxcloud experience publish --filename moonzr-towerDefense.rbxl --place-id 16653575053 --universe-id 5728153410 --version-type published --api-key ${{ secrets.API_KEY_PROD_TOWER_DEFENSE }}
-# test
+    - run: rbxcloud experience publish --filename moonzr-towerDefense.rbxl --place-id 16653575053 --universe-id 5728153410 --version-type published --api-key ${{ secrets.API_KEY }}
+# rbxcloud experience publish --filename moonzr-towerDefense.rbxl --place-id 16653575053 --universe-id 5728153410 --version-type published --api-key "$(< api_key_prod.txt)"
