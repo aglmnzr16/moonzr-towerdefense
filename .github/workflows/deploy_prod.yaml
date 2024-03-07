@@ -1,0 +1,25 @@
+name: Deploy to Prod
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - uses: ok-nick/setup-aftman@v0.4.2
+      name: Install aftman
+      with:
+          token: ${{ SECRETS.GITHUB_TOKEN }}
+
+    - run: rojo build -o moonzr-towerDefense.rbxl
+
+    - run: rbxcloud experience publish --filename moonzr-towerDefense.rbxl --place-id 16653575053 --universe-id 5728153410 --version-type published --api-key ${{ secrets.API_KEY_PROD_TOWER_DEFENSE }}
+# test
