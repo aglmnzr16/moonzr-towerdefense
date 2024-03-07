@@ -21,7 +21,7 @@ jobs:
       name: install Aftman
       with:
           version: "^0.2.7"
-          token: ${{ SECRET.GITHUB_TOKEN }}
+          token: ${{ SECRETS.GITHUB_TOKEN }}
       
     - name: Lint
       run: |
